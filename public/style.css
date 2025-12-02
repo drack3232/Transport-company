@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; 
+    margin: 0;
+    padding: 0;
+    color: #374151;
+}
+
+
+header {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); 
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    background: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 600px;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: #1f2937; 
+    flex-shrink: 0;
+}
+
+.sidebar button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px 25px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.sidebar button i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar button:hover {
+    background-color: #374151;
+    color: white;
+    padding-left: 30px; 
+}
+
+
+.sidebar button:active {
+    background-color: #111827;
+    border-left-color: #3b82f6;
+}
+
+.sidebar .report-btn {
+    margin-top: 20px;
+    color: #fbbf24; 
+}
+
+.content {
+    flex: 1;
+    padding: 40px;
+    background-color: #fff;
+}
+
+h2 {
+    color: #111827;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+form {
+    display: grid;
+    gap: 20px;
+    max-width: 500px;
+    background: #f9fafb;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+input, select {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+button[type="submit"], .action-btn {
+    padding: 12px 24px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+.report-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.report-controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.1s;
+}
+
+.report-controls button:active {
+    transform: scale(0.98);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+thead {
+    background-color: #f3f4f6;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
+    font-size: 14px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: #f9fafb; 
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.status-scheduled { background: #e5e7eb; color: #374151; }
+.status-inprogress { background: #dbeafe; color: #1e40af; }
+.status-completed { background: #d1fae5; color: #065f46; }
+
+
+.delete-btn {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #fecaca;
+}

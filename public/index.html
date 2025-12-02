@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Транспортна компанія</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-truck-moving"></i> Transport Logistics Admin</h1>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <button onclick="showSection('clients')"><i class="fas fa-user-tie"></i> Клієнти</button>
+            <button onclick="showSection('drivers')"><i class="fas fa-id-card"></i> Водії</button>
+            <button onclick="showSection('vehicles')"><i class="fas fa-bus"></i> Транспорт</button>
+            <button onclick="showSection('orders')"><i class="fas fa-box-open"></i> Замовлення</button>
+            <button onclick="showSection('trips')"><i class="fas fa-route"></i> Поїздки</button>
+            <button onclick="showSection('logs')"><i class="fas fa-book"></i> Бортовий журнал</button>
+            
+            <button onclick="showSection('reports')" class="report-btn"><i class="fas fa-chart-pie"></i> Звіти / База</button>
+        </div>
+
+        <div class="content">
+            
+            <div id="clients" class="section active">
+                <h2><i class="fas fa-plus-circle"></i> Додати Клієнта</h2>
+                <form id="clientForm">
+                    <input type="text" id="c_name" placeholder="Назва компанії або ПІБ" required>
+                    <select id="c_type"><option value="company">Компанія</option><option value="person">Приватна особа</option></select>
+                    <input type="text" id="c_contact" placeholder="Телефон" required>
+                    <button type="submit">Зберегти</button>
+                </form>
+            </div>
+
+            <div id="drivers" class="section" style="display:none;">
+                <h2><i class="fas fa-plus-circle"></i> Додати Водія</h2>
+                <form id="driverForm">
+                    <input type="text" id="d_name" placeholder="ПІБ Водія" required>
+                    <input type="text" id="d_license" placeholder="Номер ліцензії" required>
+                    <input type="text" id="d_contact" placeholder="Телефон" required>
+                    <button type="submit">Зберегти</button>
+                </form>
+            </div>
+
+            <div id="vehicles" class="section" style="display:none;">
+                <h2><i class="fas fa-plus-circle"></i> Додати Транспорт</h2>
+                <form id="vehicleForm">
+                    <input type="text" id="v_reg" placeholder="Номерний знак" required>
+                    <input type="text" id="v_type" placeholder="Тип (Bus, Truck)" required>
+                    <input type="text" id="v_specs" placeholder="Характеристики" required>
+                    <button type="submit">Зберегти</button>
+                </form>
+            </div>
+
+            <div id="orders" class="section" style="display:none;">
+                <h2><i class="fas fa-plus-circle"></i> Створити Замовлення</h2>
+                <form id="orderForm">
+                    <input type="number" id="o_client_id" placeholder="ID Клієнта" required>
+                    <input type="text" id="o_route" placeholder="Маршрут" required>
+                    <div style="font-size: 14px; color: #666;">Час відправлення:</div>
+                    <input type="datetime-local" id="o_dep" required>
+                    <div style="font-size: 14px; color: #666;">Час прибуття:</div>
+                    <input type="datetime-local" id="o_arr" required>
+                    <button type="submit">Зберегти</button>
+                </form>
+            </div>
+
+            <div id="trips" class="section" style="display:none;">
+                <h2><i class="fas fa-plus-circle"></i> Оформити Поїздку</h2>
+                <form id="tripForm">
+                    <input type="number" id="t_order_id" placeholder="ID Замовлення" required>
+                    <input type="number" id="t_driver_id" placeholder="ID Водія" required>
+                    <input type="number" id="t_vehicle_id" placeholder="ID Транспорту" required>
+                    <select id="t_status">
+                        <option value="Scheduled">Заплановано</option>
+                        <option value="In Progress">В дорозі</option>
+                        <option value="Completed">Виконано</option>
+                    </select>
+                    <input type="number" id="t_expenses" placeholder="Витрати (грн)">
+                    <button type="submit">Зберегти</button>
+                </form>
+            </div>
+
+            <div id="logs" class="section" style="display:none;">
+                <h2><i class="fas fa-book"></i> Бортовий журнал (TripLog)</h2>
+                <p style="color:#666; margin-bottom:15px;">Додайте коментар або подію для поїздки (наприклад: "Виїхав", "Затор", "Поломка")</p>
+                
+                <form id="logForm" style="background:#fff; border:2px solid #e5e7eb;">
+                    <input type="number" id="l_trip_id" placeholder="ID Поїздки (Trip ID)" required>
+                    <select id="l_type">
+                        <option value="Info">ℹ️ Інформація</option>
+                        <option value="Departure">🚀 Відправлення</option>
+                        <option value="Arrival">🏁 Прибуття</option>
+                        <option value="Incident">⚠️ Інцидент</option>
+                    </select>
+                    <input type="text" id="l_comment" placeholder="Коментар водія..." required>
+                    <button type="submit" style="background:#8b5cf6;">Додати запис</button>
+                </form>
+
+                <hr style="margin: 30px 0; border:0; border-top:1px solid #ddd;">
+                
+                <h3>Переглянути журнал поїздки:</h3>
+                <div style="display:flex; gap:10px;">
+                    <input type="number" id="view_logs_id" placeholder="Введіть ID поїздки" style="width:200px;">
+                    <button onclick="getTripLogs()" style="background:#6366f1;">Показати записи</button>
+                </div>
+            </div>
+
+            <div id="reports" class="section" style="display:none;">
+                <h2><i class="fas fa-database"></i> База та Звіти</h2>
+                
+                <div class="report-controls">
+                    <button onclick="getAllDrivers()" style="background:#f59e0b;"><i class="fas fa-users"></i> Водії</button>
+                    <button onclick="getAllVehicles()" style="background:#10b981;"><i class="fas fa-truck"></i> Транспорт</button>
+                    <button onclick="getAllTrips()" style="background:#3b82f6;"><i class="fas fa-route"></i> Поїздки</button>
+                </div>
+
+                <div style="background:#f3f4f6; padding:15px; border-radius:8px; margin-bottom:20px; display:flex; gap:10px; align-items:center;">
+                    <i class="fas fa-filter" style="color:#666;"></i> <b>Замовлення за період:</b>
+                    <input type="date" id="filter_start">
+                    <span>—</span>
+                    <input type="date" id="filter_end">
+                    <button onclick="filterOrders()" style="background:#4b5563; padding:8px 15px;">Знайти</button>
+                </div>
+
+                <h3 id="listTitle" style="color:#6b7280; font-size: 16px;">Результати:</h3>
+                <div id="outputArea"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
